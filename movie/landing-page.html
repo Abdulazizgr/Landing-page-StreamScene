@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Discover and Stream Your Favorite Movies</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      integrity="sha512-..."
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      body {
+        background-color: #092e53;
+      }
+      .card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+      }
+      .modal {
+            display: none;
+            position: fixed;
+            z-index: 50;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+  </head>
+  <body class="text-white">
+    <!-- Navbar -->
+    <nav class="bg-gray-900 p-4 fixed w-full top-0 left-0 z-10 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+          <a href="#" class="text-2xl font-bold text-yellow-300 hover:text-yellow-400">StreamScene</a>
+          <div class="md:hidden">
+            <button id="menu-btn" class="text-yellow-300 focus:outline-none">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+              </svg>
+            </button>
+          </div>
+          <ul class="hidden md:flex space-x-6">
+            <li><a href="#features" class="hover:text-gray-400">Features</a></li>
+            <li><a href="#categories" class="hover:text-gray-400">Categories</a></li>
+            <li><a href="#trending" class="hover:text-gray-400">Trending</a></li>
+            <li><a href="#subscribe" class="hover:text-gray-400">Subscribe</a></li>
+            <li><a href="#reviews" class="hover:text-gray-400">Reviews</a></li>
+          </ul>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden">
+          <ul class="space-y-4 p-4">
+            <li><a href="#features" class=" hover:text-gray-400">Features</a></li>
+            <li><a href="#categories" class=" hover:text-gray-400">Categories</a></li>
+            <li><a href="#trending" class=" hover:text-gray-400">Trending</a></li>
+            <li><a href="#subscribe" class=" hover:text-gray-400">Subscribe</a></li>
+            <li><a href="#reviews" class=" hover:text-gray-400">Reviews</a></li>
+          </ul>
+        </div>
+      </nav>
+      
+    
+      
+
+    <!-- Hero Section -->
+    <section
+      class="relative bg-cover bg-center h-screen"
+      style="background-image: url('./img/extraction-2-chris-hemsworth-saves-girl.webp')"
+    >
+      <div
+        class="absolute inset-0 bg-black bg-opacity-60 flex flex-col justify-center items-center text-white"
+      >
+        <div class="text-center px-4 sm:px-8 lg:px-12">
+          <h1
+            class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 text-yellow-400"
+          >
+          Discover and Stream Your Favorite Movies and TV Shows
+          </h1>
+          <p class="text-lg sm:text-xl mb-8">
+            
+StreamScene brings together all your favorite movies and TV shows in one place, 
+<br>making it easier than ever to find and watch what you love.
+          </p>
+          <div
+            class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4"
+          >
+            <button
+              class="bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-2 px-4 rounded shadow-lg"
+              id="get-started-btn"
+            >
+           
+                Get Started
+           
+            
+            </button>
+            <!-- <button
+              class="bg-gray-800 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded shadow-lg"
+            >
+              Browse Movies
+            </button> -->
+          </div>
+          <!-- <div class="mt-8">
+            <input
+              type="text"
+              placeholder="Search for movies..."
+              class="py-2 px-4 rounded w-full max-w-md text-black"
+            />
+          </div> -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-12 bg-gray-800 text-center">
+      <h2
+        class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-yellow-400"
+      >
+        Why Choose Us?
+      </h2>
+      <div class="flex flex-wrap justify-center space-x-4 gap-8">
+        <div
+          class="w-full sm:w-1/2 lg:w-1/4 bg-gray-900 p-6 rounded-lg shadow-lg card"
+        >
+          <i class="fas fa-film text-yellow-400 text-3xl mb-4"></i>
+          <h3 class="text-lg sm:text-xl font-semibold mb-2">Wide Selection</h3>
+          <p>Access thousands of movies and TV shows.</p>
+        </div>
+        <div
+          class="w-full sm:w-1/2 lg:w-1/4 bg-gray-900 p-6 rounded-lg shadow-lg card"
+        >
+          <i class="fas fa-user-friends text-yellow-400 text-3xl mb-4"></i>
+          <h3 class="text-lg sm:text-xl font-semibold mb-2">
+            Personalized Recommendations
+          </h3>
+          <p>Tailored suggestions based on your preferences.</p>
+        </div>
+        <div
+          class="w-full sm:w-1/2 lg:w-1/4 bg-gray-900 p-6 rounded-lg shadow-lg card"
+        >
+          <i class="fa-solid fa-face-smile text-yellow-400 text-3xl mb-4"></i>
+          <h3 class="text-lg sm:text-xl font-semibold mb-2">
+            High-Quality Streaming
+          </h3>
+          <p>Stream in HD, 4K, and HDR.</p>
+        </div>
+        <div
+          class="w-full sm:w-1/2 lg:w-1/4 bg-gray-900 p-6 rounded-lg shadow-lg card"
+        >
+          <i class="fas fa-tv text-yellow-400 text-3xl mb-4"></i>
+          <h3 class="text-lg sm:text-xl font-semibold mb-2">
+            Cross-Platform Access
+          </h3>
+          <p>Available on all your devices.</p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- About As -->
+
+    <section id="about-us" class="bg-gray-800  py-12 px-4 relative bg-cover bg-center h-auto"
+      style="background-image: url('./img/showcase-bg.jpg')">
+      <div class="container mx-auto">
+        <h2 class="text-3xl font-bold mb-4 text-yellow-300 text-center">About Us</h2>
+        <p class="text-lg leading-relaxed text-center max-w-3xl mx-auto">
+          Welcome to MovieStream, your ultimate destination for discovering and streaming your favorite movies. Our platform is designed to bring you the best movie-watching experience with personalized recommendations, curated categories, and trending picks. Whether you’re a fan of action, drama, comedy, or documentaries, MovieStream has something for everyone.
+        </p>
+        <p class="text-lg leading-relaxed text-center max-w-3xl mx-auto mt-4">
+          At MovieStream, we believe in the power of storytelling and the magic of cinema. Our mission is to connect you with the movies you love and help you discover new favorites. With a vast library of films and a user-friendly interface, we make it easy for you to enjoy high-quality streaming anytime, anywhere.
+        </p>
+      </div>
+    </section>
+    
+
+   
+    <!-- Popular Categories Section -->
+    <section id="categories" class="py-12 bg-gray-800 text-center border-t-2 border-yellow-400">
+      <h2
+        class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-yellow-400"
+      >
+        Popular Categories
+      </h2>
+      <div class="flex flex-wrap justify-center space-x-4 gap-8">
+        <div
+          class="min-h-0 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 bg-gray-900 shadow-lg rounded-lg p-4 card"
+        >
+          <img
+            src="./img/gKkl37BQuKTanygYQG1pyYgLVgf.jpg"
+            alt="Category"
+            class="w-full h-32 object-cover rounded mb-4 h-auto"
+          />
+          <h3 class="text-lg font-semibold text-yellow-300">Action</h3>
+        </div>
+        <div
+          class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 bg-gray-900 shadow-lg rounded-lg p-4 card"
+        >
+          <img
+            src="./img/p6AbOJvMQhBmffd0PIv0u8ghWeY.jpg"
+            alt="Category"
+            class="w-full h-32 object-cover rounded mb-4 h-auto"
+          />
+          <h3 class="text-lg font-semibold text-yellow-300">Comedy</h3>
+        </div>
+        <div
+          class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 bg-gray-900 shadow-lg rounded-lg p-4 card"
+        >
+          <img
+            src="./img/jgF5XaXnJmOgMxulhy2k1f9LNNc.jpg"
+            alt="Category"
+            class="w-full h-32 object-cover rounded mb-4 h-auto"
+          />
+          <h3 class="text-lg font-semibold text-yellow-300">Drama</h3>
+        </div>
+        <!-- <div
+          class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 bg-gray-900 shadow-lg rounded-lg p-4 card"
+        >
+          <img
+            src="./img/rosie-sun-1L71sPT5XKc-unsplash.jpg"
+            alt="Category"
+            class="w-full h-32 object-cover rounded mb-4 h-"
+          />
+          <h3 class="text-lg font-semibold text-yellow-300">Horror</h3>
+        </div> -->
+      </div>
+      
+    </section>
+ 
+       
+
+    <!-- Trending Movies Section -->
+    <!-- <section id="trending" class="py-12 bg-gray-800 text-center border-t-2 border-yellow-400">
+      <h2
+        class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-yellow-400"
+      >
+        Trending Movies
+      </h2>
+      <div class="flex flex-wrap justify-center space-x-4 gap-8">
+        <div
+          class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 bg-gray-900 shadow-lg rounded-lg p-4 card"
+        >
+          <img
+            src="./img/upcoming/ae434jM5NG2kKX1rRkG5giMhpPI.jpg"
+            alt="Trending Movie"
+            class="w-full h-32 object-cover rounded mb-4 h-auto"
+          />
+          <h3 class="text-lg font-semibold text-yellow-300">BLUE LOCK THE MOVIE -EPISODE NAGI-</h3>
+        </div>
+        <div
+          class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 bg-gray-900 shadow-lg rounded-lg p-4 card"
+        >
+          <img
+            src="./img/upcoming/bYmszCd9kRbwmXWvxMai9Mm9B92.jpg"
+            alt="Trending Movie"
+            class="w-full h-32 object-cover rounded mb-4 h-auto"
+          />
+          <h3 class="text-lg font-semibold text-yellow-300">Twisters</h3>
+        </div>
+        <div
+          class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 bg-gray-900 shadow-lg rounded-lg p-4 card"
+        >
+          <img
+            src="./img/upcoming/j1Rjw6a62UwrbTNT0I3JzZnnCmr.jpg"
+            alt="Trending Movie"
+            class="w-full h-32 object-cover rounded mb-4 h-auto"
+          />
+          <h3 class="text-lg font-semibold text-yellow-300">Noah's Ark</h3>
+        </div>
+        <div
+          class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 bg-gray-900 shadow-lg rounded-lg p-4 card"
+        >
+          <img
+            src="path_to_trending_movie_image.jpg"
+            alt="Trending Movie"
+            class="w-full h-32 object-cover rounded mb-4"
+          />
+          <h3 class="text-lg font-semibold text-yellow-300">Movie Title</h3>
+        </div> 
+      </div>
+    </section> -->
+
+
+
+    <!-- Reviews Section -->
+    <section id="reviews" class="py-12 bg-gray-800 text-center border-t-2 border-yellow-400">
+      <h2
+        class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-yellow-400"
+      >
+        What Our Users Say
+      </h2>
+      <div class="flex flex-wrap justify-center space-x-4 gap-8">
+        <div
+          class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 bg-gray-900 shadow-lg rounded-lg p-6 card"
+        >
+          <p class="text-gray-300 mb-4">
+            
+            "Excellent service with a fantastic selection of movies. Highly
+            recommend!" 
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Hic ipsam deserunt delectus, similique facere aliquid id ducimus ratione reiciendis! Neque velit blanditiis, omnis rem nostrum nesciunt deserunt autem adipisci odio.
+          </p>
+          <div class="flex  flex-row justify-center">
+              <img class="w-8 h-8 rounded-full mr-4 " src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gouch.png" alt="profile picture">
+            <p class="font-bold text-yellow-300 text-2xl">
+                john </p>
+    
+          </div>
+         
+        </div>
+        <div
+          class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 bg-gray-900 shadow-lg rounded-lg p-6 card"
+        >
+          <p class="text-gray-300 mb-4">
+            "A great platform for movie lovers. The streaming quality is
+            top-notch!"
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, sit!
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eum quia assumenda tempore accusamus ut minima iste officiis atque fugit error eos iure dolores nam voluptas nihil, eius illum voluptatem ratione.
+          </p>
+          <div class="flex  flex-row justify-center">
+              <img class="w-8 h-8 rounded-full mr-4 " src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gouch.png" alt="profile picture">
+            <p class="font-bold text-yellow-300 text-2xl">
+                john </p>
+    
+          </div>
+        </div>
+        <div
+          class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 bg-gray-900 shadow-lg rounded-lg p-6 card"
+        >
+          <p class="text-gray-300 mb-4">
+            "Love the variety and the ease of use. Always something new to
+            watch!"
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad error provident nesciunt magnam reprehenderit dolore, repudiandae molestias eligendi ipsam, exercitationem quis, dicta voluptate? Asperiores nemo, doloribus voluptatibus pariatur laudantium aliquid!
+          </p>
+          <div class="flex  flex-row justify-center">
+              <img class="w-8 h-8 rounded-full mr-4 " src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gouch.png" alt="profile picture">
+            <p class="font-bold text-yellow-300 text-2xl">
+                john </p>
+    
+          </div>
+        </div>
+      </div>
+    </section>
+
+   
+
+    <!-- Subscription Plans Section -->
+    <!-- <section id="subscribe" class="py-12 bg-gray-800 text-center border-t-2 border-yellow-400">
+      <h2
+        class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-yellow-400"
+      >
+        Choose Your Plan
+      </h2>
+      <div class="flex flex-wrap justify-center space-x-4 gap-8">
+        <div
+          class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 bg-gray-900 shadow-lg rounded-lg p-6 card"
+        >
+          <h3 class="text-lg sm:text-xl font-semibold mb-4 text-yellow-300">
+            Basic
+          </h3>
+          <p class="text-yellow-400 mb-4">$8.99/month</p>
+          <ul class="text-left mb-6 text-gray-300">
+            <li>- Access to all movies</li>
+            <li>- SD quality</li>
+            <li>- 1 screen at a time</li>
+          </ul>
+          <button
+            class="bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-2 px-4 rounded shadow-lg"
+          >
+            Choose Plan
+          </button>
+        </div>
+        <div
+          class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 bg-gray-900 shadow-lg rounded-lg p-6 card"
+        >
+          <h3 class="text-lg sm:text-xl font-semibold mb-4 text-yellow-300">
+            Standard
+          </h3>
+          <p class="text-yellow-400 mb-4">$12.99/month</p>
+          <ul class="text-left mb-6 text-gray-300">
+            <li>- Access to all movies</li>
+            <li>- HD quality</li>
+            <li>- 2 screens at a time</li>
+          </ul>
+          <button
+            class="bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-2 px-4 rounded shadow-lg"
+          >
+            Choose Plan
+          </button>
+        </div>
+        <div
+          class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 bg-gray-900 shadow-lg rounded-lg p-6 card"
+        >
+          <h3 class="text-lg sm:text-xl font-semibold mb-4 text-yellow-300">
+            Premium
+          </h3>
+          <p class="text-yellow-400 mb-4">$15.99/month</p>
+          <ul class="text-left mb-6 text-gray-300">
+            <li>- Access to all movies</li>
+            <li>- 4K and HDR quality</li>
+            <li>- 4 screens at a time</li>
+          </ul>
+          <button
+            class="bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-2 px-4 rounded shadow-lg"
+          >
+            Choose Plan
+          </button>
+        </div>
+      </div>
+    </section> -->
+
+
+
+    <!-- How It Works Section -->
+    <section class="py-12 bg-gray-800 text-center border-t-2 border-yellow-400">
+      <h2
+        class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-yellow-400"
+      >
+        How It Works
+      </h2>
+      <div class="flex flex-wrap justify-center space-x-4 gap-8">
+        <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 text-gray-300 card">
+          <i class="fas fa-user-plus text-yellow-400 text-3xl mb-4"></i>
+          <h3 class="text-lg sm:text-xl font-semibold mb-2 text-yellow-300">
+            Sign Up
+          </h3>
+          <p>Create an account with us.</p>
+        </div>
+        <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 text-gray-300 card">
+          <i class="fas fa-search text-yellow-400 text-3xl mb-4"></i>
+          <h3 class="text-lg sm:text-xl font-semibold mb-2 text-yellow-300">
+            Browse
+          </h3>
+          <p>Explore our vast library of movies.</p>
+        </div>
+        <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 text-gray-300 card">
+          <i class="fas fa-play text-yellow-400 text-3xl mb-4"></i>
+          <h3 class="text-lg sm:text-xl font-semibold mb-2 text-yellow-300">
+            Stream
+          </h3>
+          <p>Enjoy your favorite movies instantly.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Card -->
+
+ <section id="subscribe" class="py-12 bg-gray-800 text-center border-t-2 border-yellow-400">
+    <h2
+    class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-yellow-400"
+  >
+    Choose Your Plan
+  </h2>
+    <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6 ">
+        
+        <div class="space-y-8 lg:grid lg:grid-cols-3 sm:gap-6 xl:gap-10 lg:space-y-0">
+            <!-- Pricing Card -->
+            <div class="flex flex-col p-6 mx-auto max-w-lg text-center text-white bg-gray-800 rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white card">
+                <h3 class="text-lg text-2xl text-xl font-semibold mb-4 text-yellow-300">
+                    Basic
+                  </h3>
+              
+                <div class="flex justify-center items-baseline my-8">
+                    <span class="mr-2 text-5xl font-extrabold text-yellow-400 ">$29</span>
+                    <span class="text-gray-400 dark:text-gray-400 ">/month</span>
+                </div>
+                <!-- List -->
+                <ul role="list" class="mb-8 space-y-4 text-left">
+                    <li class="flex items-center space-x-3">
+                        <!-- Icon -->
+                        <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                        <span>Access to all movies</span>
+                        
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <!-- Icon -->
+                        <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                        <span>SD quality</span>
+                       
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <!-- Icon -->
+                        <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                        <span> 1 screen at a time</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <!-- Icon -->
+                        <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                        <span>Premium support: <span class="font-semibold">6 months</span></span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <!-- Icon -->
+                        <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                        <span>Free updates: <span class="font-semibold">6 months</span></span>
+                    </li>
+                </ul>
+                <button
+                class="bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-2 px-4 rounded shadow-lg"
+              >
+                Choose Plan
+              </button>
+            </div>
+
+
+             <!-- Pricing Card -->
+            <div class="flex flex-col p-6 mx-auto max-w-lg text-center text-white bg-gray-800 rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white card" >
+                <h3 class="text-lg text-2xl text-xl font-semibold mb-4 text-yellow-300">
+                    Basic
+                  </h3>
+              
+                <div class="flex justify-center items-baseline my-8">
+                    <span class="mr-2 text-5xl font-extrabold text-yellow-400 ">$29</span>
+                    <span class="text-gray-400 dark:text-gray-400 ">/month</span>
+                </div>
+                <!-- List -->
+                <ul role="list" class="mb-8 space-y-4 text-left">
+                    <li class="flex items-center space-x-3">
+                        <!-- Icon -->
+                        <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                        <span>Individual configuration</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <!-- Icon -->
+                        <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                        <span>No setup, or hidden fees</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <!-- Icon -->
+                        <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                        <span>Team size: <span class="font-semibold">1 developer</span></span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <!-- Icon -->
+                        <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                        <span>Premium support: <span class="font-semibold">6 months</span></span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <!-- Icon -->
+                        <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                        <span>Free updates: <span class="font-semibold">6 months</span></span>
+                    </li>
+                </ul>
+                <button
+                class="bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-2 px-4 rounded shadow-lg"
+              >
+                Choose Plan
+              </button>
+            </div>
+
+
+
+             <!-- Pricing Card -->
+            <div class="flex flex-col p-6 mx-auto max-w-lg text-center text-white bg-gray-800 rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white card">
+                <h3 class="text-lg text-2xl text-xl font-semibold mb-4 text-yellow-300">
+                    Basic
+                  </h3>
+              
+                <div class="flex justify-center items-baseline my-8">
+                    <span class="mr-2 text-5xl font-extrabold text-yellow-400 ">$29</span>
+                    <span class="text-gray-400 dark:text-gray-400 ">/month</span>
+                </div>
+                <!-- List -->
+                <ul role="list" class="mb-8 space-y-4 text-left">
+                    <li class="flex items-center space-x-3">
+                        <!-- Icon -->
+                        <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                        <span>Individual configuration</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <!-- Icon -->
+                        <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                        <span>No setup, or hidden fees</span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <!-- Icon -->
+                        <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                        <span>Team size: <span class="font-semibold">1 developer</span></span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <!-- Icon -->
+                        <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                        <span>Premium support: <span class="font-semibold">6 months</span></span>
+                    </li>
+                    <li class="flex items-center space-x-3">
+                        <!-- Icon -->
+                        <svg class="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                        <span>Free updates: <span class="font-semibold">6 months</span></span>
+                    </li>
+                </ul>
+                <button
+                class="bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-2 px-4 rounded shadow-lg"
+              >
+                Choose Plan
+              </button>
+            </div>
+    </div>
+  </section>
+  
+
+   
+
+
+         
+
+    <!-- Featured Collections Section -->
+    <!-- <section class="py-12 bg-gray-800 text-center border-t-2 border-yellow-400 ">
+      <h2
+        class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-yellow-400"
+      >
+        Featured Collections
+      </h2>
+      <div class="flex flex-wrap justify-center space-x-4 gap-8">
+        <div
+          class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 bg-gray-900 shadow-lg rounded-lg p-4 card"
+        >
+          <img
+            src="./img/qJ2tW6WMUDux911r6m7haRef0WH.jpg"
+            alt="Collection"
+            class="w-full h-32 object-cover rounded mb-4 h-auto"
+          />
+          <h3 class="text-lg font-semibold text-yellow-300">
+            Award-Winning Movies
+          </h3>
+        </div>
+        <div
+          class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 bg-gray-900 shadow-lg rounded-lg p-4 card"
+        >
+          <img
+            src="./img/jgF5XaXnJmOgMxulhy2k1f9LNNc.jpg"
+            alt="Collection"
+            class="w-full h-32 object-cover rounded mb-4 h-auto"
+          />
+          <h3 class="text-lg font-semibold text-yellow-300">
+            Top Picks for You
+          </h3>
+        </div>
+        <div
+          class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 bg-gray-900 shadow-lg rounded-lg p-4 card"
+        >
+          <img
+            src="./img/fea/qTb6sSRt8Pw96JTan8ezU2xO0FU.jpg"
+            alt="Collection"
+            class="w-full h-32 object-cover rounded mb-4 h-auto"
+          />
+          <h3 class="text-lg font-semibold text-yellow-300">New Releases</h3>
+        </div>
+      </div>
+    </section>
+ -->
+
+    
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+      <div class="container mx-auto text-center">
+        <p class="mb-4">
+          © 2024 Discover and Stream Your Favorite Movies. All rights reserved.
+        </p>
+        <div class="flex flex-wrap justify-center space-x-4 mb-4">
+          <a href="#features" class="hover:text-gray-400">Features</a>
+          <a href="#categories" class="hover:text-gray-400">Categories</a>
+          <a href="#trending" class="hover:text-gray-400">Trending</a>
+          <a href="#subscribe" class="hover:text-gray-400">Subscribe</a>
+          <a href="#reviews" class="hover:text-gray-400">Reviews</a>
+
+
+        </div>
+        <div class="flex justify-center space-x-4">
+          <a href="#" class="hover:text-yellow-400"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+          <a href="#" class="hover:text-yellow-400"
+            ><i class="fab fa-twitter"></i
+          ></a>
+          <a href="#" class="hover:text-yellow-400"
+            ><i class="fab fa-instagram"></i
+          ></a>
+          <a href="#" class="hover:text-yellow-400"
+            ><i class="fab fa-youtube"></i
+          ></a>
+        </div>
+      </div>
+    </footer>
+
+
+    <!--  -->
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal flex justify-center items-center">
+      <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full max-w-md relative">
+          <button id="close-login-modal" class="absolute top-0 right-0 mt-2 mr-2 text-gray-500 hover:text-gray-700">
+              <i class="fas fa-times"></i>
+          </button>
+          <form>
+              <h2 class="text-2xl font-bold mb-6 text-gray-900 text-center">Login</h2>
+              <div class="mb-4">
+                  <label class="block text-gray-700 text-sm font-bold mb-2" for="login-username">
+                      Username
+                  </label>
+                  <div class="flex items-center border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline">
+                      <i class="fas fa-user mr-2"></i>
+                      <input class="appearance-none w-full leading-tight focus:outline-none" id="login-username" type="text" placeholder="Username">
+                  </div>
+              </div>
+              <div class="mb-6">
+                  <label class="block text-gray-700 text-sm font-bold mb-2" for="login-password">
+                      Password
+                  </label>
+                  <div class="flex items-center border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline">
+                      <i class="fas fa-lock mr-2"></i>
+                      <input class="appearance-none w-full leading-tight focus:outline-none" id="login-password" type="password" placeholder="******************">
+                      <i class="fas fa-eye ml-2 cursor-pointer toggle-password"></i>
+                  </div>
+              </div>
+              <div class="flex items-center justify-between mb-4">
+                  <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+                      Sign In
+                  </button>
+                  <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800 cursor-pointer" id="open-signup-modal">
+                      Don't have an account? Sign Up
+                  </a>
+              </div>
+          </form>
+          <p class="text-center text-gray-500 text-xs">
+              &copy;2024 Company Name. All rights reserved.
+          </p>
+      </div>
+  </div>
+
+  <!-- Sign Up Modal -->
+  <section class="bg">
+
+
+  <div id="signup-modal" class="modal flex justify-center items-center ">
+      <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full max-w-md relative">
+          <button id="close-signup-modal" class="absolute top-0 right-0 mt-2 mr-2 text-gray-500 hover:text-gray-700">
+              <i class="fas fa-times"></i>
+          </button>
+          <form>
+              <h2 class="text-2xl font-bold mb-6 text-gray-900 text-center">Sign Up</h2>
+              <div class="mb-4">
+                  <label class="block text-gray-700 text-sm font-bold mb-2" for="signup-username">
+                      Username
+                  </label>
+                  <div class="flex items-center border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline">
+                      <i class="fas fa-user mr-2"></i>
+                      <input class="appearance-none w-full leading-tight focus:outline-none" id="signup-username" type="text" placeholder="Username">
+                  </div>
+              </div>
+              <div class="mb-4">
+                  <label class="block text-gray-700 text-sm font-bold mb-2" for="signup-email">
+                      Email
+                  </label>
+                  <div class="flex items-center border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline">
+                      <i class="fas fa-envelope mr-2"></i>
+                      <input class="appearance-none w-full leading-tight focus:outline-none" id="signup-email" type="email" placeholder="Email">
+                  </div>
+              </div>
+              <div class="mb-6">
+                  <label class="block text-gray-700 text-sm font-bold mb-2" for="signup-password">
+                      Password
+                  </label>
+                  <div class="flex items-center border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline">
+                      <i class="fas fa-lock mr-2"></i>
+                      <input class="appearance-none w-full leading-tight focus:outline-none" id="signup-password" type="password" placeholder="******************">
+                      <i class="fas fa-eye ml-2 cursor-pointer toggle-password"></i>
+                  </div>
+              </div>
+              <div class="mb-6">
+                  <label class="block text-gray-700 text-sm font-bold mb-2" for="confirm-password">
+                      Confirm Password
+                  </label>
+                  <div class="flex items-center border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline">
+                      <i class="fas fa-lock mr-2"></i>
+                      <input class="appearance-none w-full leading-tight focus:outline-none" id="confirm-password" type="password" placeholder="******************">
+                      <i class="fas fa-eye ml-2 cursor-pointer toggle-password"></i>
+                  </div>
+              </div>
+              <div class="flex items-center justify-between mb-4">
+                  <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+                      Sign Up
+                  </button>
+                  <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800 cursor-pointer" id="open-login-modal">
+                      Already have an account? Login
+                  </a>
+              </div>
+          </form>
+          <p class="text-center text-gray-500 text-xs">
+              &copy;2024 Company Name. All rights reserved.
+          </p>
+      </div>
+  </div>
+
+</section>
+
+    <script src="./js/script.js"></script>
+  </body>
+</html>

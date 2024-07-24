@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Started</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 50;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex justify-center items-center h-screen">
+    <!-- Get Started Button -->
+    <!-- <button class="bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-2 px-4 rounded shadow-lg" id="get-started-btn">
+        Get Started
+    </button> -->
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal flex justify-center items-center">
+        <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full max-w-md relative">
+            <button id="close-login-modal" class="absolute top-0 right-0 mt-2 mr-2 text-gray-500 hover:text-gray-700">
+                <i class="fas fa-times"></i>
+            </button>
+            <form>
+                <h2 class="text-2xl font-bold mb-6 text-gray-900 text-center">Login</h2>
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="login-username">
+                        Username
+                    </label>
+                    <div class="flex items-center border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline">
+                        <i class="fas fa-user mr-2"></i>
+                        <input class="appearance-none w-full leading-tight focus:outline-none" id="login-username" type="text" placeholder="Username">
+                    </div>
+                </div>
+                <div class="mb-6">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="login-password">
+                        Password
+                    </label>
+                    <div class="flex items-center border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline">
+                        <i class="fas fa-lock mr-2"></i>
+                        <input class="appearance-none w-full leading-tight focus:outline-none" id="login-password" type="password" placeholder="******************">
+                        <i class="fas fa-eye ml-2 cursor-pointer toggle-password"></i>
+                    </div>
+                </div>
+                <div class="flex items-center justify-between mb-4">
+                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+                        Sign In
+                    </button>
+                    <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800 cursor-pointer" id="open-signup-modal">
+                        Don't have an account? Sign Up
+                    </a>
+                </div>
+            </form>
+            <p class="text-center text-gray-500 text-xs">
+                &copy;2024 Company Name. All rights reserved.
+            </p>
+        </div>
+    </div>
+
+    <!-- Sign Up Modal -->
+    <div id="signup-modal" class="modal flex justify-center items-center">
+        <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full max-w-md relative">
+            <button id="close-signup-modal" class="absolute top-0 right-0 mt-2 mr-2 text-gray-500 hover:text-gray-700">
+                <i class="fas fa-times"></i>
+            </button>
+            <form>
+                <h2 class="text-2xl font-bold mb-6 text-gray-900 text-center">Sign Up</h2>
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="signup-username">
+                        Username
+                    </label>
+                    <div class="flex items-center border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline">
+                        <i class="fas fa-user mr-2"></i>
+                        <input class="appearance-none w-full leading-tight focus:outline-none" id="signup-username" type="text" placeholder="Username">
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="signup-email">
+                        Email
+                    </label>
+                    <div class="flex items-center border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline">
+                        <i class="fas fa-envelope mr-2"></i>
+                        <input class="appearance-none w-full leading-tight focus:outline-none" id="signup-email" type="email" placeholder="Email">
+                    </div>
+                </div>
+                <div class="mb-6">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="signup-password">
+                        Password
+                    </label>
+                    <div class="flex items-center border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline">
+                        <i class="fas fa-lock mr-2"></i>
+                        <input class="appearance-none w-full leading-tight focus:outline-none" id="signup-password" type="password" placeholder="******************">
+                        <i class="fas fa-eye ml-2 cursor-pointer toggle-password"></i>
+                    </div>
+                </div>
+                <div class="mb-6">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="confirm-password">
+                        Confirm Password
+                    </label>
+                    <div class="flex items-center border rounded w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline">
+                        <i class="fas fa-lock mr-2"></i>
+                        <input class="appearance-none w-full leading-tight focus:outline-none" id="confirm-password" type="password" placeholder="******************">
+                        <i class="fas fa-eye ml-2 cursor-pointer toggle-password"></i>
+                    </div>
+                </div>
+                <div class="flex items-center justify-between mb-4">
+                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+                        Sign Up
+                    </button>
+                    <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800 cursor-pointer" id="open-login-modal">
+                        Already have an account? Login
+                    </a>
+                </div>
+            </form>
+            <p class="text-center text-gray-500 text-xs">
+                &copy;2024 Company Name. All rights reserved.
+            </p>
+        </div>
+    </div>
+
+    <script src="./js/script.js">
+       
+    </script>
+</body>
+</html>
